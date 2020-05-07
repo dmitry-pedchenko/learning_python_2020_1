@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}MAIN{% endblock title %} Ads Board</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bboard\style.css' %}">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="{% static 'bboard\script.js' %}"></script>
+  </head>
+  <body>
+    <h1>Ads board</h1>
+    <nav>
+      <a href="{% url 'bboard:index' %}">Main</a>
+      <a href="{% url 'bboard:add' %}">Add ads</a>
+      <a href={% url 'bboard:aas' %}>Add another method</a>
+      <a href= {% url 'bboard:send_file' %} >Send test file</a>
+      <a href= {% url 'bboard:send_json' %} >Send test JSON</a>
+      {% for rubric in rubrics %}
+      <a href="{% url 'bboard:by_rubric' rubric.pk %}">{{ rubric.name }}</a>
+      {% endfor %}
+      {% if date_list %}
+        <h1>Dates:</h1>
+        <p>
+        {% for dates in date_list %}
+          {{ dates.year }}
+        {% endfor %}
+        </p>
+      {% endif %}
+      
+    </nav>
+    <section>
+      {% block content %}
+      {% endblock content %}
+    </section>
+  </body>
+</html>
+
+

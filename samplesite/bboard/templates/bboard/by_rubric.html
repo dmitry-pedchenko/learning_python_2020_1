@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+
+{% block titike %}
+  {{ current_rubric.name }}
+{% endblock %}
+
+{% block content %}
+    <h2>Type: {{ current_rubric.name }}</h2>
+    {% for bb in bbs %}
+      <div>
+        <h2><a href={% url 'bboard:detail' pk=bb.pk %}>{{ bb.title }}</a></h2>
+        <p>{{ bb.content }}</p>
+        <p>{{ bb.published|date:"Y:m:d H:i:s" }}</p>
+        <p><a href= {% url 'bboard:show_update' pk=bb.pk %}>Change</a> </p>
+        <p><a href={% url 'bboard:delete_template' pk=bb.pk %}>Delete</a></p>
+      </div>
+    {% endfor %}
+{% endblock content %}

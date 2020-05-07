@@ -1,0 +1,14 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+    {{bb.title}}
+{% endblock title %}
+
+{% block content %}
+    <p>name: {{ bb.rubric.name }} </p>
+    <h2>title: {{ bb.title }} </h2>
+    <p>content: {{ bb.content }}</p>
+    <p>price: {{ bb.price }} </p>
+{% endblock content %}
+
+

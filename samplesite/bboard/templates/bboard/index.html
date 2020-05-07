@@ -1,0 +1,30 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    {% for bb in bbs %}
+        <div class="b">
+          <h2><a href={% url 'bboard:detail' pk=bb.pk %}>{{ bb.title }}</a></h2>
+          <p>{{ bb.content }}</p>
+          <p><a href="{% url 'bboard:by_rubric' bb.rubric.pk %}">{{ bb.rubric.name }}</a></p>
+          <p>{{ bb.published|date:"Y:m:d H:i:s" }}</p>
+          <p><a href= {% url 'bboard:show_update' pk=bb.pk%} >Change</a></p>
+          <p><a href={% url 'bboard:delete_template' pk=bb.pk %}>Delete</a></p>
+        </div>
+
+    {% endfor %}
+    <div>
+      {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}">&lt;</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+      {% endif %}
+      Part № {{ page.number }} from {{ page.paginator.num_pages }}
+      {% if page.has_next %}
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="?page= {{ page.next_page_number }}">&gt;</a>
+      {% endif %}
+    </div>
+
+    
+{% endblock content %}
+
+

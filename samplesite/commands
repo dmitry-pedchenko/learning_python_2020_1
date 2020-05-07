@@ -1,0 +1,12 @@
+brew install nginx
+brew services start nginx
+
+sudo nginx -s stop
+sudo nginx
+
+pip install uwsgi
+uwsgi --http :8000 --module mysite.wsgi
+uwsgi --http :8000 --wsgi-file test.py
+
+
+
